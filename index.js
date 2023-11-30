@@ -27,20 +27,20 @@ async function executeContract() {
    
     //Deposit Hbar into liquidity pool from Account 1
     //Connect Account1 to client
-    const AccountId1 = AccountId.fromString('0.0.6024219');
-    const privateKey1 = PrivateKey.fromStringECDSA('3030020100300706052b8104000a042204204029f95102ce9b84011f3483710c5ade34e744b9351c057bd0357db782e165a3');
+    const AccountId1 = AccountId.fromString('');
+    const privateKey1 = PrivateKey.fromStringECDSA('');
     const clientNew = Client.forTestnet();
     clientNew.setOperator(AccountId1,privateKey1);
 
     //Call the depositToPool in Liquidity Pool contract
-    const contractId = '0.0.6015716';
+    const contractId = '';
     const depositExecuteTx =  new ContractExecuteTransaction().setContractId(contractId)
     .setGas(100_000)
     .setFunction("depositToPool")
     .setPayableAmount(100);
     const depositExecuteSubmit = await depositExecuteTx.execute(clientNew);
     const depositReceipt = await depositExecuteSubmit.getReceipt(clientNew)
-    console.log(`${depositReceipt}`)
+    //console.log(`${depositReceipt}`)
 
     //Get the deposit made by Account 1 (client - Account 1)
 
